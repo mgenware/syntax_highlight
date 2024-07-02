@@ -37,7 +37,7 @@
       "patterns": [
         {
           "name": "meta.element.xml",
-          "begin": "<([a-zA-Z_:][\\w:.-]*)",
+          "begin": "<([\\p{L}_:][\\p{L}0-9:._-]*)",
           "beginCaptures": {
             "1": {
               "name": "entity.name.tag.xml"
@@ -85,7 +85,7 @@
       "patterns": [
         {
           "name": "constant.character.entity.xml",
-          "match": "&[a-zA-Z_:][\\w:.-]*;"
+          "match": "&[\\p{L}_:][\\p{L}0-9:._-]*;"
         }
       ]
     },
@@ -93,7 +93,7 @@
       "patterns": [
         {
           "name": "entity.other.attribute-name.xml",
-          "match": "[a-zA-Z_:][\\w:.-]*"
+          "match": "[\\p{L}_:][\\p{L}0-9:._-]*"
         },
         {
           "name": "string.quoted.double.xml",
@@ -102,7 +102,7 @@
           "patterns": [
             {
               "name": "constant.character.entity.xml",
-              "match": "&[a-zA-Z_:][\\w:.-]*;"
+              "match": "&[\\p{L}_:][\\p{L}0-9:._-]*;"
             }
           ]
         },
@@ -113,7 +113,7 @@
           "patterns": [
             {
               "name": "constant.character.entity.xml",
-              "match": "&[a-zA-Z_:][\\w:.-]*;"
+              "match": "&[\\p{L}_:][\\p{L}0-9:._-]*;"
             }
           ]
         }
