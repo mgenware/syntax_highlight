@@ -1,0 +1,139 @@
+{
+  "name": "XML",
+  "scopeName": "source.xml",
+  "patterns": [
+    {
+      "include": "#prolog"
+    },
+    {
+      "include": "#element"
+    },
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#cdata"
+    },
+    {
+      "include": "#entity"
+    }
+  ],
+  "repository": {
+    "prolog": {
+      "patterns": [
+        {
+          "name": "meta.prolog.xml",
+          "begin": "<\\?xml",
+          "end": "\\?>",
+          "patterns": [
+            {
+              "include": "#attributes"
+            }
+          ]
+        }
+      ]
+    },
+    "element": {
+      "patterns": [
+        {
+          "name": "meta.element.xml",
+          "begin": "<([a-zA-Z_:][\\w:.-]*)",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.name.tag.xml"
+            }
+          },
+          "end": "(>)|(\\/>\\s*)",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.end.xml"
+            },
+            "2": {
+              "name": "punctuation.definition.tag.self-closing.xml"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#attributes"
+            },
+            {
+              "include": "#content"
+            }
+          ]
+        }
+      ]
+    },
+    "comment": {
+      "patterns": [
+        {
+          "name": "comment.block.xml",
+          "begin": "<!--",
+          "end": "-->"
+        }
+      ]
+    },
+    "cdata": {
+      "patterns": [
+        {
+          "name": "meta.cdata.xml",
+          "begin": "<!\\[CDATA\\[",
+          "end": "\\]\\]>"
+        }
+      ]
+    },
+    "entity": {
+      "patterns": [
+        {
+          "name": "constant.character.entity.xml",
+          "match": "&[a-zA-Z_:][\\w:.-]*;"
+        }
+      ]
+    },
+    "attributes": {
+      "patterns": [
+        {
+          "name": "entity.other.attribute-name.xml",
+          "match": "[a-zA-Z_:][\\w:.-]*"
+        },
+        {
+          "name": "string.quoted.double.xml",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.entity.xml",
+              "match": "&[a-zA-Z_:][\\w:.-]*;"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.xml",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.entity.xml",
+              "match": "&[a-zA-Z_:][\\w:.-]*;"
+            }
+          ]
+        }
+      ]
+    },
+    "content": {
+      "patterns": [
+        {
+          "include": "#element"
+        },
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#cdata"
+        },
+        {
+          "include": "#entity"
+        }
+      ]
+    }
+  }
+}
